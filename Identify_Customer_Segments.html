@@ -13153,7 +13153,7 @@ div#notebook {
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="k">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">Imputer</span>
 
 <span class="c1"># magic word for producing visualizations in notebook</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
@@ -15439,6 +15439,9 @@ OST_WEST_KZ [nan &#39;W&#39; &#39;O&#39;]
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># If you&#39;ve not yet cleaned the dataset of all NaN values, then investigate and</span>
 <span class="c1"># do that now.</span>
+<span class="n">azdias</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">azdias</span><span class="p">)</span>
+<span class="n">cleaner</span> <span class="o">=</span> <span class="n">Imputer</span><span class="p">(</span><span class="n">missing_values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">azdias</span> <span class="o">=</span> <span class="n">cleaner</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">azdias</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -15452,6 +15455,8 @@ OST_WEST_KZ [nan &#39;W&#39; &#39;O&#39;]
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Apply feature scaling to the general population demographics data.</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">azdias</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">azdias</span><span class="p">)</span>
 </pre></div>
 
     </div>
